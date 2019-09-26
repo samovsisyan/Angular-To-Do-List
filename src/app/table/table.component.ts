@@ -27,19 +27,12 @@ import { MoviesService } from '../movies.service';
   styleUrls: ['./table.component.css']
 })
 
-interface Country {
-  name: string;
-  flag: string;
-  area: number;
-  population: number;
-}
-
 export class TableComponent implements OnInit {
 
   firstname: string;
+  isCollapsed: boolean = true;
 
-
-products = [
+  products = [
     {
       id: 1,
       firstname: 'Russia',
@@ -85,10 +78,33 @@ products = [
   }
 
 
-   deleteMsg(i) {
-     console.log(i);
-      this.products.splice(i, 1);
+  deleteMsg(i) {
+    console.log(i);
+    this.products.splice(i, 1);
   }
+
+  toggleCollapse() {
+    this.isCollapsed = !this.isCollapsed;
+  }
+
+
+  createToDo() {
+
+  }
+  addHero(value) {
+const arr = [];
+arr.push(value)
+    console.log(arr);
+  }
+
+
+
+  // heroes = [];
+  // addHero(newHero: string) {
+  //   if (newHero) {
+  //     this.heroes.push(newHero);
+  //   }
+  // }
 
 
 }
@@ -100,7 +116,12 @@ products = [
 
 
 
-
+interface Country {
+  name: string;
+  flag: string;
+  area: number;
+  population: number;
+}
 
 
 

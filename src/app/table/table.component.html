@@ -16,17 +16,32 @@
   <tbody>
   <tr *ngFor="let product of products; index as i">
     <th scope="row">{{ i + 1 }}</th>
-    <td>
+    <td >
       <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + product.flag" class="mr-2" style="width: 20px">
       {{ product.firstname }}
     </td>
     <td>{{ product.area | number }}</td>
     <td>{{ product.population | number }}</td>
     <button (click)="deleteMsg(i)">Delate</button>
-
   </tr>
+
+  <tr *ngIf="!isCollapsed">
+    <td><input #newHero (keyup.enter)="addHero(newHero.value)" disabled (blur)="addHero(newHero.value); newHero.value='' " type="hidden" placeholder="Id"></td>
+    <td><input #newHero (keyup.enter)="addHero(newHero.value)" (blur)="addHero(newHero.value); newHero.value='' "  type="text" placeholder="Country"></td>
+    <td><input #newHero (keyup.enter)="addHero(newHero.value)" (blur)="addHero(newHero.value); newHero.value='' "  type="text" placeholder="Area"></td>
+    <td><input #newHero (keyup.enter)="addHero(newHero.value)" (blur)="addHero(newHero.value); newHero.value='' "  type="text" placeholder="Population"></td>
+    <td><button (click)="addHero(newHero.value)">Add</button></td>
+  </tr>
+  <button type="button" class="btn btn-primary btn-block" *ngIf="isCollapsed"  (click)="toggleCollapse()">Create To Do List</button>
+  <button type="button" class="btn btn-primary btn-block" *ngIf="!isCollapsed"  (click)="toggleCollapse()">Cancle To Do List</button>
+
+
+
   </tbody>
 </table>
+
+
+
 
 
 
