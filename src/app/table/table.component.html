@@ -1,0 +1,33 @@
+<p>Table is just a mapping of objects to table rows with <code>ngFor</code></p>
+
+
+<input type="text"  [(ngModel)]="firstname"  (input)="Search()" />
+{{firstname}}
+<table class="table table-striped">
+  <thead>
+
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Country</th>
+    <th scope="col">Area</th>
+    <th scope="col">Population</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let product of products; index as i">
+    <th scope="row">{{ i + 1 }}</th>
+    <td>
+      <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + product.flag" class="mr-2" style="width: 20px">
+      {{ product.firstname }}
+    </td>
+    <td>{{ product.area | number }}</td>
+    <td>{{ product.population | number }}</td>
+    <button (click)="deleteMsg(i)">Delate</button>
+
+  </tr>
+  </tbody>
+</table>
+
+
+
+
