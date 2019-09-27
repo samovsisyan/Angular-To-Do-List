@@ -22,24 +22,38 @@
     </td>
     <td>{{ product.area | number }}</td>
     <td>{{ product.population | number }}</td>
+    <button (click)="editTable(i)">Edit</button>
     <button (click)="deleteMsg(i)">Delate</button>
   </tr>
 
+
+
   <tr *ngIf="!isCollapsed">
-    <td><input #newHero (keyup.enter)="addHero(newHero.value)" disabled (blur)="addHero(newHero.value); newHero.value='' " type="hidden" placeholder="Id"></td>
-    <td><input #newHero (keyup.enter)="addHero(newHero.value)" (blur)="addHero(newHero.value); newHero.value='' "  type="text" placeholder="Country"></td>
-    <td><input #newHero (keyup.enter)="addHero(newHero.value)" (blur)="addHero(newHero.value); newHero.value='' "  type="text" placeholder="Area"></td>
-    <td><input #newHero (keyup.enter)="addHero(newHero.value)" (blur)="addHero(newHero.value); newHero.value='' "  type="text" placeholder="Population"></td>
-    <td><button (click)="addHero(newHero.value)">Add</button></td>
+    <td><input disabled type="hidden"></td>
+    <td><input type="text" #input [value]="value" ></td>
+    <td><input type="text" #input1 [value]="value1" ></td>
+    <td><input type="text" #input2 [value]="value2" ></td>
+
+    <td ng-click="editUser(user)">
+      <span ng-hide="user.editMode">{{user.firstName}}</span>
+      <input type="text" name="firstName" ng-show="user.editMode" class="form-control" ng-model="user.firstName" placeholder="First Name" required="" />
+    </td>
+
+    <button (click)="clickAdd(input.value,input1.value, input2.value)">Add</button>
   </tr>
   <button type="button" class="btn btn-primary btn-block" *ngIf="isCollapsed"  (click)="toggleCollapse()">Create To Do List</button>
   <button type="button" class="btn btn-primary btn-block" *ngIf="!isCollapsed"  (click)="toggleCollapse()">Cancle To Do List</button>
 
+  <tr *ngFor="let value of val; index as i">
+    <td></td>
+    <td>{{this.val[i]}}</td>
+
+    <button (click)="deleteAdd(i)">Delate</button>
+  </tr>
 
 
   </tbody>
 </table>
-
 
 
 

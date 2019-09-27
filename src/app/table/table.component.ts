@@ -31,6 +31,16 @@ export class TableComponent implements OnInit {
 
   firstname: string;
   isCollapsed: boolean = true;
+  values = '';
+  tempData = [];
+
+  val = [];
+
+  value: string = "";
+  value1: string = "";
+  value2: string = "";
+
+
 
   products = [
     {
@@ -83,19 +93,72 @@ export class TableComponent implements OnInit {
     this.products.splice(i, 1);
   }
 
+  deleteAdd(i) {
+    console.log(i);
+    this.val.splice(i, 1);
+  }
+
   toggleCollapse() {
     this.isCollapsed = !this.isCollapsed;
   }
 
 
-  createToDo() {
+  // createToDo() {
+  //   this.val.push(this.values);
+  //   console.log(this.val);
+  // }
+  //
+  // onKey(event: any) { // without type info
+  //   this.values += event.target.value + ' | ';
+  // }
+
+
+  // clickValue () {
+  //   console.log(changeText);
+  // }
+
+  clickAdd(value,value1, value2) {
+    this.val.push(value,value1, value2);
+    console.log(this.val);
 
   }
-  addHero(value) {
-const arr = [];
-arr.push(value)
-    console.log(arr);
+
+
+
+  editTable(i) {
+    this.products[i]
+    console.log(this.products[i]);
+    console.log(this.products[i].firstname);
+    console.log(this.products[i].area);
+    console.log(this.products[i].population);
+
   }
+
+
+
+
+
+
+  // addHero(newHero: string) {
+  //   for (let index = 0; index < this.products.length; index++){
+  //     if (this.products[index].firstname == "Russia") {
+  //       this.tempData.push(this.products);
+  //     }
+  //   }
+  //   this.products = this.tempData;
+  //   console.log(this.tempData);
+  //   // if (newHero) {
+  //   //   this.products.push(newHero);
+  //   // }
+  // }
+
+
+
+//   addHero(value) {
+// const arr = [];
+// arr.push(value)
+//     console.log(arr);
+//   }
 
 
 
