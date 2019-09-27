@@ -18,11 +18,12 @@
     <th scope="row">{{ i + 1 }}</th>
     <td >
       <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + product.flag" class="mr-2" style="width: 20px">
-      {{ product.firstname }}
+      <input [disabled]="inputDisabled"  type="text" value="{{ product.firstname }}" />
     </td>
-    <td>{{ product.area | number }}</td>
-    <td>{{ product.population | number }}</td>
-    <button (click)="editTable(i)">Edit</button>
+    <td><input  [disabled]="inputDisabled"  value=" {{ product.area | number }} "/></td>
+    <td> <input [disabled]="inputDisabled"  value=" {{ product.population | number }}" /></td>
+    <button *ngIf="inputDisabled" (click)="inputDisabled = false">Edit</button>
+    <button *ngIf="!inputDisabled" (click)="inputDisabled = true">Save</button>
     <button (click)="deleteMsg(i)">Delate</button>
   </tr>
 
@@ -30,30 +31,29 @@
 
   <tr *ngIf="!isCollapsed">
     <td><input disabled type="hidden"></td>
-    <td><input type="text" #input [value]="value" ></td>
-    <td><input type="text" #input1 [value]="value1" ></td>
-    <td><input type="text" #input2 [value]="value2" ></td>
+    <td><input type="text" [(ngModel)]="newcountry.firstname"></td>
+    <td><input type="text" [(ngModel)]="newcountry.area"></td>
+    <td><input type="text" [(ngModel)]="newcountry.population" ></td>
 
-    <td ng-click="editUser(user)">
-      <span ng-hide="user.editMode">{{user.firstName}}</span>
-      <input type="text" name="firstName" ng-show="user.editMode" class="form-control" ng-model="user.firstName" placeholder="First Name" required="" />
-    </td>
+<!--    <td ng-click="editUser(user)">-->
+<!--      <span ng-hide="user.editMode"></span>-->
+<!--      <input type="text" name="firstName" ng-show="user.editMode" class="form-control" ng-model="user.firstName" placeholder="First Name" required="" />-->
+<!--    </td>-->
 
-    <button (click)="clickAdd(input.value,input1.value, input2.value)">Add</button>
+    <button (click)="clickAdd()">Add</button>
   </tr>
   <button type="button" class="btn btn-primary btn-block" *ngIf="isCollapsed"  (click)="toggleCollapse()">Create To Do List</button>
   <button type="button" class="btn btn-primary btn-block" *ngIf="!isCollapsed"  (click)="toggleCollapse()">Cancle To Do List</button>
 
-  <tr *ngFor="let value of val; index as i">
-    <td></td>
-    <td>{{this.val[i]}}</td>
-
-    <button (click)="deleteAdd(i)">Delate</button>
-  </tr>
 
 
   </tbody>
 </table>
+
+
+<input [disabled]="inputDisabled"   type="text">
+<button *ngIf="!inputDisabled" (click)="inputDisabled = true">Edit</button>
+<button *ngIf="inputDisabled" (click)="inputDisabled = false">Save</button>
 
 
 

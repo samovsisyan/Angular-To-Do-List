@@ -40,6 +40,7 @@ export class TableComponent implements OnInit {
   value1: string = "";
   value2: string = "";
 
+  inputDisabled: boolean = true;
 
 
   products = [
@@ -73,13 +74,20 @@ export class TableComponent implements OnInit {
     }
   ];
 
-
+  public newcountry = {
+    id: 0,
+    firstname: '',
+    flag: '',
+    area: 0,
+    population: 0
+  };
 
 
   constructor() {
   }
 
   ngOnInit() {
+    console.log(this.newcountry)
   }
   Search(){
     this.products = this.products.filter(res => {
@@ -117,62 +125,26 @@ export class TableComponent implements OnInit {
   //   console.log(changeText);
   // }
 
-  clickAdd(value,value1, value2) {
-    this.val.push(value,value1, value2);
+  clickAdd() {
+    this.newcountry.id = this.products[this.products.length - 1].id + 1;
+    this.products.push(this.newcountry);
     console.log(this.val);
-
   }
 
 
 
-  editTable(i) {
-    this.products[i]
-    console.log(this.products[i]);
-    console.log(this.products[i].firstname);
-    console.log(this.products[i].area);
-    console.log(this.products[i].population);
-
+  editTable() {
+    // this.products[i]
+    // console.log(this.products[i]);
+    // console.log(this.products[i].firstname);
+    // console.log(this.products[i].area);
+    // console.log(this.products[i].population);
   }
 
 
-
-
-
-
-  // addHero(newHero: string) {
-  //   for (let index = 0; index < this.products.length; index++){
-  //     if (this.products[index].firstname == "Russia") {
-  //       this.tempData.push(this.products);
-  //     }
-  //   }
-  //   this.products = this.tempData;
-  //   console.log(this.tempData);
-  //   // if (newHero) {
-  //   //   this.products.push(newHero);
-  //   // }
-  // }
-
-
-
-//   addHero(value) {
-// const arr = [];
-// arr.push(value)
-//     console.log(arr);
-//   }
-
-
-
-  // heroes = [];
-  // addHero(newHero: string) {
-  //   if (newHero) {
-  //     this.heroes.push(newHero);
-  //   }
-  // }
 
 
 }
-
-
 
 
 
