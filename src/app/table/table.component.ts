@@ -18,6 +18,9 @@
 import { Component, OnInit  } from '@angular/core';
 
 import { MoviesService } from '../movies.service';
+import {isObject} from 'rxjs/internal-compatibility';
+import {filter} from 'rxjs/operators';
+import {forEachComment} from 'tslint';
 
 
 
@@ -41,6 +44,7 @@ export class TableComponent implements OnInit {
   value2: string = "";
 
   inputDisabled: boolean = true;
+  userData: any = [];
 
 
   products = [
@@ -89,7 +93,7 @@ export class TableComponent implements OnInit {
   ngOnInit() {
     console.log(this.newcountry)
   }
-  Search(){
+  Search() {
     this.products = this.products.filter(res => {
       return res.firstname.toLocaleLowerCase().match(this.firstname.toLocaleLowerCase());
     });
@@ -101,10 +105,16 @@ export class TableComponent implements OnInit {
     this.products.splice(i, 1);
   }
 
-  deleteAdd(i) {
-    console.log(i);
-    this.val.splice(i, 1);
-  }
+  localStorageAdd(index) {
+    const addLocalStor = JSON.parse(localStorage.getItem('newcountry'));
+    this.userData.push(addLocalStor);
+    console.log(this.userData);
+    }
+
+//   addLocalStor.map((item, i) => (
+//   localStorage.removeItem(i)
+// ));
+
 
   toggleCollapse() {
     this.isCollapsed = !this.isCollapsed;
@@ -125,20 +135,44 @@ export class TableComponent implements OnInit {
   //   console.log(changeText);
   // }
 
+
   clickAdd() {
     this.newcountry.id = this.products[this.products.length - 1].id + 1;
-    this.products.push(this.newcountry);
+    this.products.push(Object.assign({}, this.newcountry));
     console.log(this.val);
+    // localStorage.setItem('key', JSON.stringify(isObject(this.newcountry)));
+    console.log();
+
+    const oldObject = JSON.parse(localStorage.getItem('newcountry')) || [];
+
+    const newObject = {
+      'first-name': this.newcountry.firstname,
+      'area': this.newcountry.area,
+      'population': this.newcountry.population,
+    };
+    oldObject.push(newObject);
+    localStorage.setItem("newcountry", JSON.stringify(oldObject));
+  }
+
+  getInterpretations () {
+    if (localStorage.getItem("newcountry") ===null){
+      this.newcountry = [];
+    }
+    else {
+      this.newcountry = JSON.parse(localStorage.getItem("newcountry"))
+    }
   }
 
 
 
+
+
   editTable() {
-    // this.products[i]
-    // console.log(this.products[i]);
-    // console.log(this.products[i].firstname);
-    // console.log(this.products[i].area);
-    // console.log(this.products[i].population);
+      this.products[i]
+      console.log(this.products[i]);
+      console.log(this.products[i].firstname);
+      console.log(this.products[i].area);
+      console.log(this.products[i].population);
   }
 
 

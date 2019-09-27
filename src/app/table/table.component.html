@@ -16,14 +16,14 @@
   <tbody>
   <tr *ngFor="let product of products; index as i">
     <th scope="row">{{ i + 1 }}</th>
-    <td >
+    <td>
       <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + product.flag" class="mr-2" style="width: 20px">
-      <input [disabled]="inputDisabled"  type="text" value="{{ product.firstname }}" />
+      <input [disabled]="true"  type="text" value="{{ product.firstname }}" />
     </td>
-    <td><input  [disabled]="inputDisabled"  value=" {{ product.area | number }} "/></td>
-    <td> <input [disabled]="inputDisabled"  value=" {{ product.population | number }}" /></td>
-    <button *ngIf="inputDisabled" (click)="inputDisabled = false">Edit</button>
-    <button *ngIf="!inputDisabled" (click)="inputDisabled = true">Save</button>
+    <td><input #input1 [disabled]="true"  value=" {{ product.area | number }} "/></td>
+    <td> <input    [disabled]="true"   value=" {{ product.population | number }}" /></td>
+    <button *ngIf="inputDisabled" (click)="input1.disabled = false; inputDisabled=false">Edit</button>
+    <button *ngIf="!inputDisabled" (click)="input1.disabled = true; inputDisabled=true">Save</button>
     <button (click)="deleteMsg(i)">Delate</button>
   </tr>
 
@@ -54,6 +54,7 @@
 <input [disabled]="inputDisabled"   type="text">
 <button *ngIf="!inputDisabled" (click)="inputDisabled = true">Edit</button>
 <button *ngIf="inputDisabled" (click)="inputDisabled = false">Save</button>
+<button  (click)="localStorageAdd()">local</button>
 
 
 
